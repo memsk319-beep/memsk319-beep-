@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIMLOCK V4 HAO</title>
+    <style>
+        body { background: #0d0202; color: #ffe5e5; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .menu { background: #1a0505; border: 2px solid #5a0e0e; border-radius: 12px; width: 310px; padding: 20px; box-shadow: 0 0 20px rgba(255,0,0,0.4); text-align: center; }
+        .head { border-bottom: 2px solid #ff0000; padding-bottom: 8px; margin-bottom: 15px; }
+        .logo { width: 140px; fill: url(#g); filter: drop-shadow(0 0 5px #ff0000); display: block; margin: 0 auto 5px auto; }
+        h1 { color: #ff0000; font-size: 19px; margin: 5px 0 0 0; text-shadow: 0 0 8px #ff0000; }
+        .txt { font-size: 11px; color: #ff8080; margin: 2px 0 0 0; }
+        .in { width: 90%; padding: 10px; background: #400505; border: 1px solid #800c0c; border-radius: 6px; color: #fff; font-size: 15px; text-align: center; margin-bottom: 10px; outline: none; }
+        .btn { width: 97%; padding: 10px; background: #800c0c; border: none; border-radius: 6px; color: #fff; font-weight: bold; cursor: pointer; }
+        .btn:hover { background: #ff0000; }
+        .pnl { display: none; max-height: 320px; overflow-y: auto; text-align: left; }
+        .box { margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; background: #2b0404; padding: 10px 12px; border-radius: 6px; border-left: 4px solid #ff0000; font-size: 13px; font-weight: bold; }
+        .f-box { flex-direction: column; align-items: flex-start; }
+        .f-btn { background: #800c0c; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; margin-top: 5px; display: inline-block; }
+        .btn-launch { width: 100%; padding: 12px; background: linear-gradient(90deg, #ff3300, #ffcc00); border: none; border-radius: 6px; color: #fff; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 10px; box-shadow: 0 0 10px rgba(255,51,0,0.5); text-transform: uppercase; }
+        .btn-launch:hover { box-shadow: 0 0 15px #ff3300; }
+        .sw { position: relative; width: 40px; height: 20px; }
+        .sw input { opacity: 0; width: 0; height: 0; }
+        .sld { position: absolute; cursor: pointer; top:0; left:0; right:0; bottom:0; background: #5a0e0e; transition: .2s; border-radius: 20px; }
+        .sld:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background: #fff; transition: .2s; border-radius: 50%; }
+        input:checked + .sld { background: #ff0000; box-shadow: 0 0 8px #ff0000; }
+        input:checked + .sld:before { transform: translateX(20px); }
+    </style>
+</head>
+<body>
+
+    <div class="menu">
+        <div class="head">
+            <!-- LOGO FREE FIRE BẰNG ĐỒ HỌA VECTOR CHỐNG LỖI MẤT HÌNH ANH -->
+            <svg class="logo" viewBox="0 0 400 90"><defs><linearGradient id="g"><stop offset="0%" stop-color="#ffcc00"/><stop offset="100%" stop-color="#ff0000"/></linearGradient></defs><text x="50%" y="70%" font-family="Impact, sans-serif" font-size="60" font-style="italic" font-weight="900" text-anchor="middle">FREE FIRE</text></svg>
+            <h1>AIMLOCK V4 HAO</h1>
+            <p class="txt" id="sub">Nhập Key</p>
+        </div>
+
+        <!-- KHU VỰC ĐĂNG NHẬP -->
+        <div id="lgn">
+            <input type="text" class="in" id="k" placeholder="Nhập Key V4">
+            <button class="btn" onclick="go()">Kích Hoạt</button>
+        </div>
+
+        <!-- KHU VỰC TÍNH NĂNG -->
+        <div class="pnl" id="pnl">
+            <!-- NÚT MỞ GAME FREE FIRE -->
+            <button class="btn-launch" onclick="launchFF()">🎮 Mở Free Fire</button>
+            <div style="height: 15px;"></div>
+
+            <div class="box f-box">
+                <span>📁 File Cấu Hình</span>
+                <label for="f" class="f-btn">Chọn File</label>
+                <input type="file" id="f" style="display:none" onchange="document.getElementById('lbl').innerText='Đã nạp file'">
+                <div class="txt" id="lbl" style="margin-top:4px">Chưa nạp file.</div>
+            </div>
+            <div class="box"><span>⚡ Tối ưu 240FPS</span><label class="sw"><input type="checkbox"><span class="sld"></span></label></div>
+            <div class="box"><span>🎯 Aimlock 100%</span><label class="sw"><input type="checkbox"><span class="sld"></span></label></div>
+            <div class="box"><span>🔥 Ghim Đầu (Aim Head)</span><label class="sw"><input type="checkbox"><span class="sld"></span></label></div>
+            <div class="box"><span>🚀 Auto Headshot</span><label class="sw"><input type="checkbox"><span class="sld"></span></label></div>
+            <div class="box"><span>🛡️ Ghim Không Giật</span><label class="sw"><input type="checkbox"><span class="sld"></span></label></div>
+            <div class="box"><span>🔋 Tăng Tốc Đạn</span><label class="sw"><input type="checkbox"><span class="sld"></span></label></div>
+        </div>
+
+        <div class="txt" style="margin-top:15px; font-size:10px;">HAO &copy; 2026</div>
+    </div>
+
+    <script>
+        function go() {
+            if (document.getElementById("k").value.trim() === "CVB7-446J-66O") {
+                document.getElementById("lgn").style.display = "none";
+                document.getElementById("pnl").style.display = "block";
+                document.getElementById("sub").innerText = "Đã Kích Hoạt";
+            } else {
+                alert("Sai Key!");
+                document.getElementById("k").value = "";
+            }
+        }
+
+        // Hàm xử lý khi nhấn nút Mở Free Fire
+        function launchFF() {
+            console.log("Đang khởi chạy game...");
+            // Lệnh deep link mở ứng dụng Free Fire trên Android (Chỉ hoạt động khi chạy trên app/injector chuyên dụng)
+            window.location.href = "intent://#Intent;scheme=com.dts.freefireth;end";
+        }
+    </script>
+</body>
+</html>
